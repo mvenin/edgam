@@ -1,0 +1,51 @@
+<div class="cv-main" style="display: flex;  justify-content: space-between;">
+    <div class="cv-sidebar" style="margin: 2rem;">
+        <div class="cv-letter-full cv-letter-full-A"> A</div>
+        <div class="cv-letter-full cv-letter-full-E"> E</div>
+        <div class="cv-letter-full cv-letter-full-I"> I</div>
+        <div class="cv-letter-full cv-letter-full-O"> O</div>
+        <div class="cv-letter-full cv-letter-full-U"> U</div>
+        <div class="cv-letter-full cv-letter-full-Y"> Y</div>
+
+    </div>
+
+    <div class="cv-content" style="display: flex;    flex-direction: column;    min-width: 90%;">
+
+        <div #cvContentLetters class="cv-content-letters" style="display: flex; margin: 2rem;flex-wrap: wrap">
+            <div *ngFor="let ch of sentenceLetters"
+                 (click)="isVoyelle(ch) && showTextBox(textBox)"
+                 [class.cv-letter-full] = "isVoyelle(ch)"
+                 [class.cv-letter-fill] = "!isVoyelle(ch)"
+                 [class.cv-letter-space] = "isSpace(ch)"
+                 [class.cv-letter-empty-A] = "ch === 'A'"
+                 [class.cv-letter-empty-E] = "ch === 'E'"
+                 [class.cv-letter-empty-I] = "ch === 'I'"
+                 [class.cv-letter-empty-O] = "ch === 'O'"
+                 [class.cv-letter-empty-U] = "ch === 'U'"
+                 [class.cv-letter-empty-Y] = "ch === 'Y'"
+                 >
+                <span *ngIf="!isVoyelle(ch)">{{ch}}</span>
+                <input #textBox type="text" (keyup)="onTypeLetter($event, textBox, ch)"
+                       [hidden]="true" style="width: 2rem;"
+                       maxlength="1"
+                       [class.cv-letter-empty-A] = "ch === 'A'"
+                       [class.cv-letter-empty-E] = "ch === 'E'"
+                       [class.cv-letter-empty-I] = "ch === 'I'"
+                       [class.cv-letter-empty-O] = "ch === 'O'"
+                       [class.cv-letter-empty-U] = "ch === 'U'"
+                       [class.cv-letter-empty-Y] = "ch === 'Y'"
+                >
+            </div>
+        </div>
+
+        <div class="cv-content-freetext"
+             style="margin: 2rem;display: flex;flex-direction: column;align-items: baseline;">
+            <textarea #txtDS rows="20" cols="50">EDUARD FACE LEGO</textarea>
+
+            <button (click)="voyelles($event,txtDS)">
+                voyelles
+            </button>
+        </div>
+
+    </div>
+</div>
