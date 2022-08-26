@@ -1,3 +1,8 @@
+input:focus {
+  outline: none !important;
+  box-shadow: 0 0 10px #719ECE;
+}
+
 .cv-letter-space {
   border: 0 !important;
   font-size: 1.5rem;

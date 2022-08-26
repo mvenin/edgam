@@ -31,25 +31,12 @@ export class AppCvComponent {
   }
 
   onTypeLetter($event: KeyboardEvent, textBox: HTMLInputElement, char: string) {
-    console.debug(textBox.value);
     let val = textBox.value;
     if (val.toLowerCase() === char.toLowerCase()) {
       textBox.value = char.toUpperCase();
     } else {
       textBox.value = '';
     }
-
-    let key: any = $event['key'];
-    alert(key+ "\n" + JSON.stringify($event, ['key', 'code'])  );
-
-    // if (key === 'Shift') {
-    //   return;
-    // }
-    // if (key.toLowerCase() === char.toLowerCase()) {
-    //   textBox.value = char.toUpperCase();
-    // } else {
-    //   textBox.value = '?';
-    // }
   }
 
 }

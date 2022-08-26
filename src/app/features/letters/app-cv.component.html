@@ -18,7 +18,8 @@
     <div [attr.hidden]="boxToggle? null : true">
       <div style="display: flex; flex-direction: row; margin-top: 2rem; flex-wrap: wrap">
         <div *ngFor="let ch of sentenceLetters"
-             [class.cv-letter-space]="isSpace(ch)">
+             [class.cv-letter-space]="isSpace(ch)"
+        >
           <input type="text" #textBox
                  maxlength="1" style="width: 2rem; height: 2rem;"
 
