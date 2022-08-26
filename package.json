@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --output-path docs --base-href /edgame/",
-    "deploy": "ng deploy --base-href=/edgame/",
+    "build": "ng build --output-path docs --base-href /edgam/",
+    "deploy": "ng deploy --base-href=/edgam/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

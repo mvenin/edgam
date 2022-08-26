@@ -35,10 +35,10 @@ export class AppCvComponent {
     if (key === 'Shift') {
       return;
     }
-    if (key.toLowerCase() !== char.toLowerCase()) {
-      textBox.value = '';
-    } else {
+    if (key.toLowerCase() === char.toLowerCase()) {
       textBox.value = char.toUpperCase();
+    } else {
+      textBox.value = '?';
     }
   }
 
