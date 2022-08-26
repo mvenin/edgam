@@ -12,31 +12,22 @@ export class AppCvComponent {
   @ViewChild('txtDS') txtDS: ElementRef | undefined;
   sentenceLetters: any[] = [];
 
-  voyelles($event: MouseEvent, txtsrc: HTMLTextAreaElement) {
-    this.sentenceLetters = [...this.txtDS?.nativeElement.value];
-    let btn: any = $event.target;
-    if (txtsrc.style.display === 'none') {
-      txtsrc.style.display = '';
-      btn['innerText'] = 'voyelles';
-    } else {
-      txtsrc.style.display = 'none';
-      btn['innerText'] = 'text';
-    }
+  boxToggle: boolean = false;
 
+  onToggleLetters($event: MouseEvent) {
+    this.sentenceLetters = [...this.txtDS?.nativeElement.value].map(t => t.toUpperCase());
+    let btn: any = $event.target;
+    this.boxToggle = !this.boxToggle;
+    btn['innerText'] = this.boxToggle ? 'Text' : 'Go';
   }
 
   isVoyelle(ch: string): boolean {
-    let found = ['A', 'E', 'I', 'O', 'U', 'Y'].find(t => t === ch);
+    let found = ['A', 'E', 'I', 'O', 'U', 'Y'].find(t => t.toUpperCase() === ch.toUpperCase());
     return !!found;
   }
 
   isSpace(ch: string) {
     return ch.match(/^\s*$/g);
-  }
-
-  showTextBox(textBox: HTMLInputElement) {
-    textBox.hidden = false;
-    textBox.focus();
   }
 
   onTypeLetter($event: KeyboardEvent, textBox: HTMLInputElement, char: string) {
@@ -50,4 +41,5 @@ export class AppCvComponent {
       textBox.value = char.toUpperCase();
     }
   }
+
 }
