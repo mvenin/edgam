@@ -18,7 +18,7 @@ export class AppCvComponent {
     this.sentenceLetters = [...this.txtDS?.nativeElement.value].map(t => t.toUpperCase());
     let btn: any = $event.target;
     this.boxToggle = !this.boxToggle;
-    btn['innerText'] = this.boxToggle ? 'Text' : 'Go';
+    btn['innerText'] = this.boxToggle ? 'Txt' : 'Go';
   }
 
   isVoyelle(ch: string): boolean {
@@ -28,6 +28,12 @@ export class AppCvComponent {
 
   isSpace(ch: string) {
     return ch.match(/^\s*$/g);
+  }
+
+  isPunctuation(ch: string) {
+    let m = ch.match(/^\.|\!|\?$/g);
+    // console.debug(ch+' '+m);
+    return m;
   }
 
   onTypeLetter($event: KeyboardEvent, textBox: HTMLInputElement, char: string) {

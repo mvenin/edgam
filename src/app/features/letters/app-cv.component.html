@@ -1,16 +1,16 @@
-<div class="cv-main" style="display: flex;  justify-content: space-between;" xmlns="http://www.w3.org/1999/html">
-  <div class="cv-sidebar" style="margin: 2rem;">
-    <button (click)="onToggleLetters($event)"
-            style="font-size: 1.2rem;  margin-bottom: 1rem;">
-      Go
-    </button>
+<div class="cv-main" style="display: flex;  justify-content: space-between;">
 
-    <div class="cv-letter-full cv-letter-full-A"> A</div>
-    <div class="cv-letter-full cv-letter-full-E"> E</div>
-    <div class="cv-letter-full cv-letter-full-I"> I</div>
-    <div class="cv-letter-full cv-letter-full-O"> O</div>
-    <div class="cv-letter-full cv-letter-full-U"> U</div>
-    <div class="cv-letter-full cv-letter-full-Y"> Y</div>
+  <div class="cv-sidebar" style="margin: 2rem 1rem 1rem 1rem;">
+      <button (click)="onToggleLetters($event)"
+              style="font-size: 1.2rem;  margin-bottom: 1rem;">
+        Go
+      </button>
+      <div class="cv-letter-full cv-letter-full-A"> A</div>
+      <div class="cv-letter-full cv-letter-full-E"> E</div>
+      <div class="cv-letter-full cv-letter-full-I"> I</div>
+      <div class="cv-letter-full cv-letter-full-O"> O</div>
+      <div class="cv-letter-full cv-letter-full-U"> U</div>
+      <div class="cv-letter-full cv-letter-full-Y"> Y</div>
   </div>
 
   <div class="cv-content" style="display: flex; flex-direction: column;  min-width: 90%;">
@@ -29,8 +29,9 @@
                  [attr.hidden]="isSpace(ch) ? true : null"
 
                  [class.cv-letter-full]="isVoyelle(ch)"
-                 [class.cv-letter-fill]="!isVoyelle(ch)"
+                 [class.cv-letter-fill]="!isVoyelle(ch) && !isPunctuation(ch)"
                  [class.cv-letter-space]="isSpace(ch)"
+                 [class.cv-letter-space]="isPunctuation(ch)"
 
                  [class.cv-letter-empty-A]="ch.toUpperCase() === 'A'"
                  [class.cv-letter-empty-E]="ch.toUpperCase() === 'E'"
