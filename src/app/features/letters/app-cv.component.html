@@ -11,9 +11,12 @@
             style="font-size: 1.2rem;  margin-bottom: 1rem;">
       Go
     </button>
+    <div class="cv-letter-break"></div>
+
   </div>
 
   <div class="content-container">
+
     <div [attr.hidden]="boxToggle? null : true">
       <div class="letters-container">
         <div *ngFor="let ch of sentenceLetters"
@@ -21,20 +24,20 @@
              [class.cv-letter-break]="isBreakToNewLine(ch)"
         >
           <input type="text" #textBox
-                 maxlength="1" style="width: 2rem; height: 2rem;"
+                 class="cv-text-box" maxlength="1"
                  (keyup)="onTypeLetter($event, textBox, ch)"
 
-                 [attr.value]="!isBreakToNewLine(ch) ? ch : ''"
+                 [attr.value]="!(isVowel(ch) || isBreakToNewLine(ch) )? ch : ''"
                  [attr.disabled]="!isVowel(ch) ? true : null"
                  [attr.hidden]="isSpace(ch) ? true : null"
 
-                 [class.cv-letter-full]="isVowel(ch)"
                  [class.cv-letter-fill]="!isVowel(ch) && !isPunctuation(ch)"
                  [class.cv-letter-space]="isSpace(ch)"
                  [class.cv-letter-space]="isPunctuation(ch)"
 
-                 [class.cv-letter-empty-A]="ch.toUpperCase() === 'A'"
-                 [class.cv-letter-empty-E]="ch.toUpperCase() === 'E'"
+                 [class.cv-letter-empty]="isVowel(ch)"
+                 [class.cv-letter-empty-A]="isLetterA(ch)"
+                 [class.cv-letter-empty-E]="isLetterE(ch)"
                  [class.cv-letter-empty-I]="ch.toUpperCase() === 'I'"
                  [class.cv-letter-empty-O]="ch.toUpperCase() === 'O'"
                  [class.cv-letter-empty-U]="ch.toUpperCase() === 'U'"
@@ -45,7 +48,7 @@
     </div>
 
     <div [attr.hidden]="boxToggle? true : null" style="margin-top: 2rem;">
-      <textarea #txtDS rows="20" cols="50">EDUARD FACE LEGO #SI SE JOACA CU PRIETENII.</textarea>
+      <textarea #txtDS rows="20" cols="40">DÉJÀ OUBLIÉ? #EDUARD FACE LEGO #SI SE JOACA CU PRIETENII.</textarea>
     </div>
 
   </div>
