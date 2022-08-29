@@ -11,17 +11,19 @@ export class AppCvComponent {
 
   @ViewChild('txtDS') txtDS: ElementRef | undefined;
   sentenceLetters: any[] = [];
+  lettersMeta: any[] = [];
 
   boxToggle: boolean = false;
 
   onToggleLetters($event: MouseEvent) {
     this.sentenceLetters = [...this.txtDS?.nativeElement.value].map(t => t.toUpperCase());
+
     let btn: any = $event.target;
     this.boxToggle = !this.boxToggle;
     btn['innerText'] = this.boxToggle ? 'Txt' : 'Go';
   }
 
-  isVoyelle(ch: string): boolean {
+  isVowel(ch: string): boolean {
     let found = ['A', 'E', 'I', 'O', 'U', 'Y'].find(t => t.toUpperCase() === ch.toUpperCase());
     return !!found;
   }
@@ -32,13 +34,18 @@ export class AppCvComponent {
 
   isPunctuation(ch: string) {
     let m = ch.match(/^\.|\!|\?$/g);
-    // console.debug(ch+' '+m);
+    return m;
+  }
+
+  isBreakToNewLine(ch: string) {
+    let m = ch.match(/^#$/g);
+    console.debug(ch+' '+m);
     return m;
   }
 
   onTypeLetter($event: KeyboardEvent, textBox: HTMLInputElement, char: string) {
     let val = textBox.value;
-    if (val.toLowerCase() === char.toLowerCase()) {
+    if (val.toLowerCase() === char.toLowerCase() && this.isVowel(char)) {
       textBox.value = char.toUpperCase();
     } else {
       textBox.value = '';

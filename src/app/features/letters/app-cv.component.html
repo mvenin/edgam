@@ -1,35 +1,35 @@
-<div class="cv-main" style="display: flex;  justify-content: space-between;">
+<div class="cv-main">
 
-  <div class="cv-sidebar" style="margin: 2rem 1rem 1rem 1rem;">
-      <button (click)="onToggleLetters($event)"
-              style="font-size: 1.2rem;  margin-bottom: 1rem;">
-        Go
-      </button>
-      <div class="cv-letter-full cv-letter-full-A"> A</div>
-      <div class="cv-letter-full cv-letter-full-E"> E</div>
-      <div class="cv-letter-full cv-letter-full-I"> I</div>
-      <div class="cv-letter-full cv-letter-full-O"> O</div>
-      <div class="cv-letter-full cv-letter-full-U"> U</div>
-      <div class="cv-letter-full cv-letter-full-Y"> Y</div>
+  <div class="cv-sidebar">
+    <div class="cv-letter-full cv-letter-full-A"> A</div>
+    <div class="cv-letter-full cv-letter-full-E"> E</div>
+    <div class="cv-letter-full cv-letter-full-I"> I</div>
+    <div class="cv-letter-full cv-letter-full-O"> O</div>
+    <div class="cv-letter-full cv-letter-full-U"> U</div>
+    <div class="cv-letter-full cv-letter-full-Y"> Y</div>
+    <button (click)="onToggleLetters($event)"
+            style="font-size: 1.2rem;  margin-bottom: 1rem;">
+      Go
+    </button>
   </div>
 
-  <div class="cv-content" style="display: flex; flex-direction: column;  min-width: 90%;">
-
+  <div class="content-container">
     <div [attr.hidden]="boxToggle? null : true">
-      <div style="display: flex; flex-direction: row; margin-top: 2rem; flex-wrap: wrap">
+      <div class="letters-container">
         <div *ngFor="let ch of sentenceLetters"
              [class.cv-letter-space]="isSpace(ch)"
+             [class.cv-letter-break]="isBreakToNewLine(ch)"
         >
           <input type="text" #textBox
                  maxlength="1" style="width: 2rem; height: 2rem;"
-
                  (keyup)="onTypeLetter($event, textBox, ch)"
-                 [attr.value]="!isVoyelle(ch) ? ch : ''"
-                 [attr.disabled]="!isVoyelle(ch) ? true : null"
+
+                 [attr.value]="!isBreakToNewLine(ch) ? ch : ''"
+                 [attr.disabled]="!isVowel(ch) ? true : null"
                  [attr.hidden]="isSpace(ch) ? true : null"
 
-                 [class.cv-letter-full]="isVoyelle(ch)"
-                 [class.cv-letter-fill]="!isVoyelle(ch) && !isPunctuation(ch)"
+                 [class.cv-letter-full]="isVowel(ch)"
+                 [class.cv-letter-fill]="!isVowel(ch) && !isPunctuation(ch)"
                  [class.cv-letter-space]="isSpace(ch)"
                  [class.cv-letter-space]="isPunctuation(ch)"
 
@@ -45,9 +45,7 @@
     </div>
 
     <div [attr.hidden]="boxToggle? true : null" style="margin-top: 2rem;">
-      <textarea #txtDS
-                rows="20" cols="50">EDUARD FACE LEGO
-      </textarea>
+      <textarea #txtDS rows="20" cols="50">EDUARD FACE LEGO #SI SE JOACA CU PRIETENII.</textarea>
     </div>
 
   </div>
