@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: AppDashboardComponent, pathMatch: 'full' },
   { path: 'vowels', component: AppCvComponent, pathMatch: 'full' },
+  { path: '*', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
